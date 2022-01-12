@@ -1,19 +1,21 @@
 import logo from './logo.svg'
 import './App.css'
 import React, { useEffect, useState } from 'react'
-import DarkmodeToggle from './components/DarkmodeToggle'
-import { switchMode } from './utils/helpers'
+import ThemeToggle from './components/ThemeToggle'
+import { switchTheme } from './utils/helpers'
 
 const App = () => {
-  const [mode, setMode] = useState('dark')
+  const [theme, setTheme] = useState(
+    localStorage.getItem('app-theme') ? localStorage.getItem('app-theme') : 'dark'
+  )
 
-  // When the screen mode changes, then the callback function that changes styles executes
-  useEffect(() => switchMode(mode), [mode])
+  // When the theme changes, then the callback function that changes styles executes
+  useEffect(() => switchTheme(theme), [theme])
 
   return (
     <div className="App">
       <header className="App-header">
-        <DarkmodeToggle mode={mode} setMode={setMode} />
+        <ThemeToggle theme={theme} setTheme={setTheme} />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
